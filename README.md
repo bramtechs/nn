@@ -1,7 +1,5 @@
 # `nn`: Non-nullable pointers for C++
 
-(refactored with C++17)
-
 `nn` is a type that helps you enforce at compile time the contract that a given pointer
 can't be null. It wraps around raw pointers or smart pointers, and works particularly
 well out of the box with `std::unique_ptr` and `std::shared_ptr`.
