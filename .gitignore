@@ -2,3 +2,4 @@ test
 build
 bin
 result
+cmake-build-debug
