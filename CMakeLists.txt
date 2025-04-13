@@ -1,7 +1,10 @@
-cmake_minimum_required(VERSION 3.5)
-project(nn CXX)
+cmake_minimum_required(VERSION 3.12)
+project(nn LANGUAGES CXX VERSION 1.1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Option to build tests
+option(NN_BUILD_TESTS "Build the test executable" OFF)
 
 # Create the INTERFACE library
 add_library(${PROJECT_NAME} INTERFACE)
@@ -17,9 +20,11 @@ install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}Config
     INCLUDES DESTINATION include
 )
 
-if (NN_BUILD_TEST)
+# Build tests if this is the root project and NN_BUILD_TEST is enabled
+if (NN_BUILD_TESTS)
     add_executable(nn_test test_nn.cpp)
     target_link_libraries(nn_test PRIVATE nn)
+    message(STATUS "Building tests")
 endif()
 
 # Install the header files
